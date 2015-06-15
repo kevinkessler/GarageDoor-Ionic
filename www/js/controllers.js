@@ -6,15 +6,19 @@ angular.module('garagedoor.controllers', [])
   }
 })
 
-.controller('TempCtrl', function($scope, ConfigService) {
+.controller('TempCtrl', function($scope, ConfigService,$window,$sce) {
   // With the new view caching in Ionic, Controllers are only called
   // when they are recreated or on app start, instead of every page change. 
   // To listen for when this page is active (for example, to refresh data),
   // listen for the $ionicView.enter event:
   //
-  //$scope.$on('$ionicView.enter', function(e) {
-  //});
-  
+  $scope.$on('$ionicView.enter', function(e) {
+    alert("View Enter")
+  });
+  $scope.config=ConfigService.getConfig();
+  $scope.width=$window.screen.width;
+  $scope.link=$sce.trustAsResourceUrl("http://api.thingspeak.com/channels/"+$scope.config.minChan+"/charts/1?width="+$window.screen.width+"&height=260&results=1000&dynamic=true&title=Per%20Minute%20Temp");
+
 })
 
 .controller('ConfigCtrl', function($scope,$ionicModal,ConfigService) {
