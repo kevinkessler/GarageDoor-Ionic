@@ -6,18 +6,34 @@
     </ion-header-bar>
     <ion-content class="padding">
       <div class="list">
+        <div class="item item-divider">
+          Particle
+        </div>
         <label class="item item-input">
-          <span class="input-label">Particle API Key</span>
+          <span class="input-label">API Key</span>
           <input ng-model="newConfig.apiKey" type="text">
         </label>
+        <div class="item item-divider">
+          Thingspeak
+        </div>
         <label class="item item-input">
-          <span class="input-label">Thingspeak Minute Channel</span>
+          <span class="input-label">Minute Channel</span>
           <input ng-model="newConfig.minChan" type="text">
         </label>
         <label class="item item-input">
-          <span class="input-label">Thingspeak Hour Channel</span>
+          <span class="input-label">Minute Channel API Key</span>
+          <input ng-model="newConfig.minChanKey" type="text">
+        </label>
+
+        <label class="item item-input">
+          <span class="input-label">Hour Channel</span>
           <input ng-model="newConfig.hourChan" type="text">
         </label>
+        <label class="item item-input">
+          <span class="input-label">Hour Channel API Key</span>
+          <input ng-model="newConfig.hourChanKey" type="text">
+        </label>
+
       </div>
     </ion-content>
   </ion-modal-view>

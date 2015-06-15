@@ -1,8 +1,24 @@
 <ion-view view-title="Temp">
   <ion-content>
-  <div class="photo">
-  <iframe width="{{width}}" height="260" style="border: 1px solid #cccccc;" ng-src={{link}}></iframe>
-</div>
-    {{config.minChan}}<br>{{width}}<br>{{ratio}}<br>{{link}}
+  <ion-slide-box show-pager="false">
+  	<ion-slide>		
+		<div class="box">
+			<Center><h2>Short Term Temperature</h2></center>
+			<iframe width="{{width}}" height="{{height}}" style="border: 1px solid #cccccc;" ng-src={{minlink}}></iframe>
+			<!-- <center><H2>By Hour Chart <i class="icon ion-arrow-right-a"></i></H2></center>
+			<p></p><br> -->
+			<center><button class="button button-large icon-right ion-arrow-right-a button-stable" ng-click="nextSlide()">Long Term Chart</button></center>
+		</div>
+	</ion-slide>
+	 <ion-slide> 	
+		<div class="box">
+			<Center><h2>Long Term Temperature</h2></center>
+			<iframe width="{{width}}" height="{{height}}" style="border: 1px solid #cccccc;" ng-src={{hourlink}}></iframe>
+			<!-- <center><H2><i class="icon ion-arrow-left-a"></i> By Minute Chart</H2></Center>
+			<br> -->
+			<center><button class="button button-large icon-left ion-arrow-left-a button-stable" ng-click="prevSlide()">Short Term Chart</button></center>
+		</div>
+	</ion-slide>
+</ion-slide-box>
   </ion-content>
 </ion-view>
