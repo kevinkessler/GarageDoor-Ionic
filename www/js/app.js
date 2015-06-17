@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('garagedoor', ['ionic', 'garagedoor.controllers', 'garagedoor.services','config.service'])
+angular.module('garagedoor', ['ionic', 'garagedoor.controllers', 'garagedoor.services','config.service','ngCordova'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {

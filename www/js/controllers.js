@@ -1,11 +1,38 @@
 angular.module('garagedoor.controllers', [])
 
-.controller('HomeCtrl', function($scope, ConfigService) {
-  $scope.test = function() {
-    console.log(JSON.stringify(ConfigService.getConfig()));
+.controller('HomeCtrl', function($scope, ConfigService, $cordovaToast,$http) {
+
+  $scope.config=ConfigService.getConfig();
+
+  $scope.light = function() {
+    var url="https://api.particle.io/v1/devices/"+$scope.config.deviceID+"/command";
+    var params={
+      "args":"light"
+    };
+    var headers= {
+      "Authorization": "Bearer "+$scope.config.apiKey
+    };
+    var config={
+      "headers":headers
+    };
+
+    $http.post(url,params,config)
+      .success(function(data,status){
+        if(data.return_value==0)
+        {
+          $cordovaToast.show('Light Successful', 'long', 'bottom')
+        }
+        else {
+          $cordovaToast.show('Light Failed', 'long', 'bottom')
+        }
+        console.log("Particle Call Success "+JSON.stringify(data))
+      })
+      .error(function(data,status){
+        $cordovaToast.show('Light Failed', 'long', 'bottom');
+        console.log("Particle Call Error "+JSON.stringify(data)+" "+status)
+      }) 
   }
 })
-
 .controller('TempCtrl', function($scope, ConfigService,$window,$sce,$ionicSlideBoxDelegate) {
   // With the new view caching in Ionic, Controllers are only called
   // when they are recreated or on app start, instead of every page change. 
